@@ -10,11 +10,6 @@ namespace ASPDOTNETProjrct.Models
         [MaxLength(100,ErrorMessage ="Category name cannot exceed 200 character ")]
         public string Name{ get; set; }
         public string? Description{ get; set; }
-
         public ICollection<Post> Posts { get; set; }
-
-
-
-
     }
 }

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace ASPDOTNETProjrct.Migrations
 {
     /// <inheritdoc />
-    public partial class CreateInitialDatabaseTable : Migration
+    public partial class ProjectInitialMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

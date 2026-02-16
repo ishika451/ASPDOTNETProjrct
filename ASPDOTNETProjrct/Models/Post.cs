@@ -6,12 +6,12 @@ namespace ASPDOTNETProjrct.Models
 {
     public class Post
     {
-        [Key ]
+        [Key]
         public int ID { get; set; }
 
         [Required(ErrorMessage = "Title is required.")]
 
-         [MaxLength (400,ErrorMessage ="the tittle Cannot exceed 400 character")]
+        [MaxLength(400, ErrorMessage = "the tittle Cannot exceed 400 character")]
         public string Title { get; set; }
 
         [Required(ErrorMessage = "Content is required.")]
@@ -24,11 +24,11 @@ namespace ASPDOTNETProjrct.Models
         public string Description { get; set; }
         public string FeatureImagePath { get; set; }
 
-        public DateTime PublishedDate { get; set; }=DateTime.Now;
+        public DateTime PublishedDate { get; set; } = DateTime.Now;
 
 
-        [ForeignKey("Category")] 
-        public int CategoryID { get; set; } 
+        [ForeignKey("Category")]
+        public int CategoryID { get; set; }
         public Category Category { get; set; }
 
         public ICollection<Comment> Comments { get; set; }
