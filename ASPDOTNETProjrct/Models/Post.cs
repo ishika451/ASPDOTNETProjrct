@@ -7,8 +7,8 @@ namespace ASPDOTNETProjrct.Models
     public class Post
     {
         [Key]
-        public int ID { get; set; }
-
+      
+        public int Id { get; internal set; }
         [Required(ErrorMessage = "Title is required.")]
 
         [MaxLength(400, ErrorMessage = "the tittle Cannot exceed 400 character")]
@@ -28,7 +28,8 @@ namespace ASPDOTNETProjrct.Models
 
 
         [ForeignKey("Category")]
-        public int CategoryID { get; set; }
+       
+        public int CategoryId { get; internal set; }
         public Category Category { get; set; }
 
         public ICollection<Comment> Comments { get; set; }
