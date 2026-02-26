@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ASPDOTNETProjrct.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260222080557_First migration")]
-    partial class Firstmigration
+    [Migration("20260226132212_Seeding")]
+    partial class Seeding
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -44,6 +44,23 @@ namespace ASPDOTNETProjrct.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Technology"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Health"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "lifeStyle"
+                        });
                 });
 
             modelBuilder.Entity("ASPDOTNETProjrct.Models.Comment", b =>
@@ -78,18 +95,18 @@ namespace ASPDOTNETProjrct.Migrations
 
             modelBuilder.Entity("ASPDOTNETProjrct.Models.Post", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Author")
                         .IsRequired()
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int>("CategoryID")
+                    b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
                     b.Property<string>("Content")
@@ -112,11 +129,46 @@ namespace ASPDOTNETProjrct.Migrations
                         .HasMaxLength(400)
                         .HasColumnType("nvarchar(400)");
 
-                    b.HasKey("ID");
+                    b.HasKey("Id");
 
-                    b.HasIndex("CategoryID");
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("Posts");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = -1,
+                            Author = "John Doe",
+                            CategoryId = 1,
+                            Content = "Content of Tech Post 1",
+                            Description = "test1",
+                            FeatureImagePath = "tech_image.jpg",
+                            PublishedDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Tech Post 1"
+                        },
+                        new
+                        {
+                            Id = -2,
+                            Author = "Jane Doe",
+                            CategoryId = 2,
+                            Content = "Content of Health Post 1",
+                            Description = "test2",
+                            FeatureImagePath = "health_image.jpg",
+                            PublishedDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Health Post 1"
+                        },
+                        new
+                        {
+                            Id = -3,
+                            Author = "Alex Smith",
+                            CategoryId = 3,
+                            Content = "Content of Lifestyle Post 1",
+                            Description = "test3",
+                            FeatureImagePath = "lifestyle_image.jpg",
+                            PublishedDate = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Lifestyle Post 1"
+                        });
                 });
 
             modelBuilder.Entity("ASPDOTNETProjrct.Models.Comment", b =>
@@ -134,7 +186,7 @@ namespace ASPDOTNETProjrct.Migrations
                 {
                     b.HasOne("ASPDOTNETProjrct.Models.Category", "Category")
                         .WithMany("Posts")
-                        .HasForeignKey("CategoryID")
+                        .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

@@ -1,4 +1,5 @@
 using ASPDOTNETProjrct.Models.Data;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,6 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+SqlConnection conn = new SqlConnection();
 
 builder.Services.AddDbContext<AppDbContext>(Options =>
 {
